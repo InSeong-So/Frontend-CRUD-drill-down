@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strictPropertyInitialization": false,
     "module": "ES6",
     // @ts-check와 같은 효과를 내는 옵션은 checkJs
     "allowJs": true,
@@ -11,6 +12,7 @@
     "moduleResolution": "Node",
     "lib": [
       "ES2015",
+      "ES2017",
       "DOM",
       "DOM.Iterable"
     ],
