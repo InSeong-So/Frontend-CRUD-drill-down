@@ -1,6 +1,11 @@
 // ROUTE
 export const FRONT_SERVER_URL = 'http://localhost:5510' as string;
 export const BACK_SERVER_URL = 'http://localhost:3000' as string;
+export const GET = 'GET' as string;
+export const POST = 'POST' as string;
+export const PUT = 'PUT' as string;
+export const PATCH = 'PATCH' as string;
+export const DELETE = 'DELETE' as string;
 
 // ACTIONS
 export const CHANGE_CATEGORY = 'CHANGE_CATEGORY' as string; // 카테고리 변경 이벤트(Only View)
@@ -36,3 +41,4 @@ export const LOCALSTORAGE_KEY = Object.freeze([
 ]) as Array<string>;
 export const ENTER_KEYCODE = 'Enter' as string;
 export const ESC_KEYCODE = 'Escape' as string;
+export const LIMIT_DELAY_TWO_SECOND = 2000 as number;

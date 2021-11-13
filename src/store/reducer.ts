@@ -5,6 +5,11 @@ import {
   UPDATE_MENU_SUCCESS,
   DELETE_MENU_SUCCESS,
   SOLDOUT_MENU_SUCCESS,
+  LOAD_MENU_FAILURE,
+  CREATE_MENU_FAILURE,
+  UPDATE_MENU_FAILURE,
+  DELETE_MENU_FAILURE,
+  SOLDOUT_MENU_FAILURE,
 } from '../constants/index.js';
 
 const initialState = {
@@ -19,26 +24,26 @@ const initialState = {
 };
 
 interface StateProps {
-  espresso: Array<string>;
-  frappuccino: Array<string>;
-  blended: Array<string>;
-  teavana: Array<string>;
-  desert: Array<string>;
+  espresso: string[];
+  frappuccino: string[];
+  blended: string[];
+  teavana: string[];
+  desert: string[];
   currentCategory: string;
   currentCategoryText: string;
   menuCount: number;
 }
 
 interface ActionProps {
-  type: string | any;
-  category: string | any;
-  currentCategory: string | any;
-  currentCategoryText: string | any;
+  type: string;
+  category: string;
+  currentCategory: string;
+  currentCategoryText: string;
   data: any;
 }
 
 const reducer = (
-  state: StateProps = initialState,
+  state: StateProps | any = initialState,
   action: ActionProps,
 ): StateProps => {
   switch (action.type) {
@@ -57,13 +62,22 @@ const reducer = (
     case CREATE_MENU_SUCCESS:
       return {
         ...state,
-        [action.category]: action.data,
+        [action.category]: [
+          ...(state[action.category] as string[]),
+          action.data,
+        ],
         menuCount: ++state.menuCount,
       };
     case UPDATE_MENU_SUCCESS:
+    case SOLDOUT_MENU_SUCCESS:
       return {
         ...state,
-        [action.category]: action.data,
+        [action.category]: state[action.category].map((item: any) => {
+          if (item.id === action.data.id) {
+            return action.data;
+          }
+          return item;
+        }),
       };
     case DELETE_MENU_SUCCESS:
       return {
@@ -71,11 +85,11 @@ const reducer = (
         [action.category]: action.data,
         menuCount: --state.menuCount,
       };
-    case SOLDOUT_MENU_SUCCESS:
-      return {
-        ...state,
-        [action.category]: action.data,
-      };
+    case LOAD_MENU_FAILURE:
+    case CREATE_MENU_FAILURE:
+    case UPDATE_MENU_FAILURE:
+    case SOLDOUT_MENU_FAILURE:
+    case DELETE_MENU_FAILURE:
     default:
       return state;
   }

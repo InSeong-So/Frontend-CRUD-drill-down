@@ -28,6 +28,13 @@ export default class Management extends Component {
 
   template() {
     return `
+    ${
+      this._store.getState().isLoading
+        ? `<div class="loading">
+            <div class="loading-image" alt="loading"></div>
+          </div>`
+        : ''
+    }
     <div class="wrapper bg-white p-10">
       <div class="heading d-flex justify-between">
         <h2 class="mt-1">${this._currentCategoryText} 메뉴 관리</h2>
@@ -39,7 +46,9 @@ export default class Management extends Component {
             ${this._currentCategoryText} 메뉴 이름
           </label>
           <input type="text" id="espresso-menu-name" name="espressoMenuName" class="input-field"
-            placeholder="${this._currentCategoryText} 메뉴 이름" autocomplete="off" />
+            placeholder="${
+              this._currentCategoryText
+            } 메뉴 이름" autocomplete="off" />
           <button type="button" name="submit" id="espresso-menu-submit-button"
             class="input-submit bg-green-600 ml-2">
             확인
@@ -62,14 +71,14 @@ export default class Management extends Component {
 
     $inputItem.addEventListener('keydown', event => {
       if (event.key !== 'Enter') return;
-      if (!$inputItem.value) return;
+      if (this._utils.isInvalidationValue($inputItem.value)) return;
       event.preventDefault();
       menuList.addItem($inputItem.value);
       $inputItem.value = '';
     });
 
     $menuAddButton.addEventListener('click', event => {
-      if (!$inputItem.value) return;
+      if (this._utils.isInvalidationValue($inputItem.value)) return;
       event.preventDefault();
       menuList.addItem($inputItem.value);
       $inputItem.value = '';
@@ -80,18 +89,17 @@ export default class Management extends Component {
       event.preventDefault();
       if (!$target.matches('button')) return;
       const $span = this._utils.$sibling($target, 'li', 'span');
-      const targetItemIndex = $span.getAttribute('key');
+      const targetItemIndex = $span.getAttribute('index');
 
       if ($target.matches('.menu-edit-button')) {
-        const targetItemText = $span.textContent.trim();
-        menuList.editedItem(+targetItemIndex, targetItemText);
-      } else if ($target.matches('.menu-remove-button')) {
-        menuList.deletedItem(+targetItemIndex);
+        menuList.updatedItem(+targetItemIndex, $span.textContent.trim());
       } else if ($target.matches('.menu-sold-out-button')) {
         menuList.soldOutItem(
           +targetItemIndex,
           ($target.textContent as string).trim(),
         );
+      } else if ($target.matches('.menu-remove-button')) {
+        menuList.deletedItem(+targetItemIndex);
       }
     });
   }

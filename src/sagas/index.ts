@@ -1,5 +1,4 @@
 import {
-  LOCALSTORAGE_KEY,
   CREATE_MENU_SUCCESS,
   LOAD_MENU_SUCCESS,
   UPDATE_MENU_SUCCESS,
@@ -11,6 +10,8 @@ import {
   SOLDOUT_MENU_SUCCESS,
   SOLDOUT_MENU_FAILURE,
 } from '../constants/index.js';
+
+import http from '../client/index.js';
 
 interface ActionProps {
   type: string;
@@ -27,13 +28,11 @@ interface DynamicProps {
 
 export default (reducer: any) => {
   return (state?: any) => {
-    return (action: ActionProps | object = {}) => {
-      return reducer(state, watchDispatch(action as ActionProps));
+    return async (action: ActionProps | object = {}) => {
+      return await reducer(state, await watchDispatch(action as ActionProps));
     };
   };
 };
-
-const localState = {} as DynamicProps;
 
 /**
  * redux-saga 구현해서 적용해보기
@@ -41,19 +40,19 @@ const localState = {} as DynamicProps;
  */
 const fork = {
   CREATE_MENU_REQUEST: (action: ActionProps) => {
-    watchCreateMenu(action);
+    return watchCreateMenu(action);
   },
   LOAD_MENU_REQUEST: (action: ActionProps) => {
-    watchLoadMenu(action);
+    return watchLoadMenu(action);
   },
   UPDATE_MENU_REQUEST: (action: ActionProps) => {
-    watchUpdateMenu(action);
+    return watchUpdateMenu(action);
   },
   DELETE_MENU_REQUEST: (action: ActionProps) => {
-    watchDeleteMenu(action);
+    return watchDeleteMenu(action);
   },
   SOLDOUT_MENU_REQUEST: (action: ActionProps) => {
-    watchSoldoutMenu(action);
+    return watchSoldoutMenu(action);
   },
 } as DynamicProps;
 
@@ -63,14 +62,9 @@ const fork = {
  * @param {object} action
  * @returns next();
  */
-const watchDispatch = (action: ActionProps) => {
-  LOCALSTORAGE_KEY.forEach(key => {
-    localState[key] = JSON.parse(localStorage.getItem(key) as string) || [];
-  });
-  Object.keys(fork).forEach(_key => {
-    if (_key === action.type) return fork[_key](action);
-  });
-  return action;
+const watchDispatch = (action: ActionProps | any) => {
+  const KEY = Object.keys(fork).filter(_key => _key === action.type)[0];
+  return KEY ? fork[KEY](action) : action;
 };
 
 /**
@@ -79,14 +73,17 @@ const watchDispatch = (action: ActionProps) => {
  *
  * @param {object} action
  */
-const watchLoadMenu = (action: ActionProps) => {
+const watchLoadMenu = async (action: ActionProps | any) => {
   try {
+    action.category = action.category || 'espresso';
+    const { data } = await http.load(action);
     action.type = LOAD_MENU_SUCCESS;
-    action.data = localState[action.category];
+    action.data = data;
+    return action;
   } catch (error) {
+    alert(error);
     action.type = LOAD_MENU_FAILURE;
-    action.message = error;
-    console.log(error);
+    return action;
   }
 };
 
@@ -96,14 +93,19 @@ const watchLoadMenu = (action: ActionProps) => {
  *
  * @param {object} action
  */
-const watchCreateMenu = (action: ActionProps) => {
+const watchCreateMenu = async (action: ActionProps | any) => {
   try {
+    const { data } = await http.create(
+      { category: action.category },
+      { name: action.data },
+    );
     action.type = CREATE_MENU_SUCCESS;
-    setStorage(action.category, action.data);
+    action.data = data;
+    return action;
   } catch (error) {
+    alert(error);
     action.type = CREATE_MENU_FAILURE;
-    action.message = error;
-    console.log(error);
+    return action;
   }
 };
 
@@ -113,14 +115,16 @@ const watchCreateMenu = (action: ActionProps) => {
  *
  * @param {object} action
  */
-const watchUpdateMenu = (action: ActionProps) => {
+const watchUpdateMenu = async (action: ActionProps | any) => {
   try {
+    const { data } = await http.update(action, { name: action.data });
     action.type = UPDATE_MENU_SUCCESS;
-    setStorage(action.category, action.data);
+    action.data = data;
+    return action;
   } catch (error) {
+    alert(error);
     action.type = UPDATE_MENU_FAILURE;
-    action.message = error;
-    console.log(error);
+    return action;
   }
 };
 
@@ -130,14 +134,15 @@ const watchUpdateMenu = (action: ActionProps) => {
  *
  * @param {object} action
  */
-const watchDeleteMenu = (action: ActionProps) => {
+const watchDeleteMenu = async (action: ActionProps | any) => {
   try {
+    await http.delete(action);
     action.type = DELETE_MENU_SUCCESS;
-    setStorage(action.category, action.data);
+    return action;
   } catch (error) {
+    alert(error);
     action.type = DELETE_MENU_FAILURE;
-    action.message = error;
-    console.log(error);
+    return action;
   }
 };
 
@@ -147,20 +152,15 @@ const watchDeleteMenu = (action: ActionProps) => {
  *
  * @param {object} action
  */
-const watchSoldoutMenu = (action: ActionProps) => {
+const watchSoldoutMenu = async (action: ActionProps | any) => {
   try {
+    const { data } = await http.soldOut(action, { name: action.data });
     action.type = SOLDOUT_MENU_SUCCESS;
-    setStorage(action.category, action.data);
+    action.data = data;
+    return action;
   } catch (error) {
+    alert(error);
     action.type = SOLDOUT_MENU_FAILURE;
-    action.message = error;
-    console.log(error);
+    return action;
   }
-};
-
-const setStorage = (key: string, value: any) => {
-  if (typeof value === 'object') {
-    value = JSON.stringify(value);
-  }
-  localStorage.setItem(key, value);
 };
