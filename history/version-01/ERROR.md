@@ -1,0 +1,58 @@
+- class typescript : https://www.typescriptlang.org/docs/handbook/classes.html
+- type & interface?
+- no-empty-function? : https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md
+- typescript array
+- typescript object destructuring : https://flaviocopes.com/typescript-object-destructuring/
+- Type 'unknown' is not assignable to type, Argument of type 'unknown' is not assignable to parameter of type '{}'
+  - Typescript Error: Argument of type ‘unknown’ is not assignable to parameter of type ‘…’ or ‘SetStateAction <…>’ : https://medium.com/@david.zhao.blog/typescript-error-argument-of-type-unknown-is-not-assignable-to-parameter-of-type-or-6b89f429cf1e
+- Argument of type 'Child Node' is not assignable to parameter of type 'Element' : https://stackoverflow.com/questions/42036992/argument-of-type-element-is-not-assignable-to-parameter-of-type-reactelement
+- parameter 'callback' implicitly has an 'any' type
+  - Typescript: TS7006: Parameter 'xxx' implicitly has an 'any' type : https://newbedev.com/typescript-ts7006-parameter-xxx-implicitly-has-an-any-type
+- typescript callback function type : https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html
+- event.key Property 'key' does not exist on type 'Event'.
+  - https://stackoverflow.com/questions/54986667/why-isnt-the-key-property-recognised-as-part-of-the-event-type-in-typescript
+  - https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
+  - https://freshman.tech/snippets/typescript/fix-value-not-exist-eventtarget/
+- Property 'matches' does not exist on type 'EventTarget'
+  - https://stackoverflow.com/questions/42066421/property-value-does-not-exist-on-type-eventtarget
+- target.previousSibling Object is possibly 'null'
+  - Type error: Object is possibly 'null'. TS2531 for window.document : https://stackoverflow.com/questions/55588968/type-error-object-is-possibly-null-ts2531-for-window-document
+- TS2345: Argument of type 'Event' is not assignable to parameter of type 'HtmlInputEvent' : https://stackoverflow.com/questions/66200914/ts2345-argument-of-type-event-is-not-assignable-to-parameter-of-type-htmlinp
+- Type 'Event' is not assignable to type '{ target: EventTarget; }'.
+- Forbidden non-null assertion : https://velog.io/@yhg0337/Type-Assertion%EC%82%AC%EC%9A%A9%EC%8B%9C-%EC%A3%BC%EC%9D%98%ED%95%B4%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0
+- Typescript ReferenceError: exports is not defined
+  - https://stackoverflow.com/questions/43042889/typescript-referenceerror-exports-is-not-defined
+  - Uncaught ReferenceError: exports is not defined
+- Expected 1 arguments, but got 0. : https://stackoverflow.com/questions/54143752/how-to-avoid-the-error-expected-1-argument-but-got-0-on-typescript
+- implicitly has type 'any' in some locations where its type cannot be determined. : https://stackoverflow.com/questions/62288150/typescript-nodejs-variable-implicitly-has-type-any-in-some-locations
+- Generic type 'Array<T>' requires 1 type argument(s)
+  - https://stackoverflow.com/questions/44864613/generic-type-arrayt-requires-1-type-arguments-angular2
+  - https://newbedev.com/generic-type-array-t-requires-1-type-argument-s-angular2
+  - https://coderedirect.com/questions/348713/generic-type-observablet-requires-1-type-argument
+- [한국어 번역](https://typescript-kr.github.io/pages/tutorials/ts-for-the-new-programmer.html)
+- how to currying typescript : https://gist.github.com/donnut/fd56232da58d25ceecf1
+- Typescript: This expression is not callable. Type '{ getUserInfo(requestData: object): Promise<object>; }' has no call signatures : https://stackoverflow.com/questions/60924989/typescript-this-expression-is-not-callable-type-getuserinforequestdata-ob
+- Argument of type 'object' is not assignable to parameter of type 'void : https://stackoverflow.com/questions/35896064/typescript-error-type-void-is-not-assignable-to-type-boolean
+- typescript object method return
+  - https://www.codegrepper.com/code-examples/typescript/typescript+return+type+object
+  - https://linguinecode.com/post/define-return-type-function-typescript
+  - https://stackoverflow.com/questions/25719834/how-can-i-define-a-typescript-object-return-value-for-a-function
+- property 'entries' does not exist on type 'ObjectConstructor'. Do you need to change your target library? : https://stackoverflow.com/questions/45422573/property-entries-does-not-exist-on-type-objectconstructor/45422950
+- Element implicitly has an 'any' type because expression of type 'string | symbol' can't be used to index type '{}'. : https://stackoverflow.com/questions/57086672/element-implicitly-has-an-any-type-because-expression-of-type-string-cant-b
+- has no initializer and is not definitely assigned in the constructor. : https://stackoverflow.com/questions/49699067/property-has-no-initializer-and-is-not-definitely-assigned-in-the-construc
+- typescript nav element : https://stackoverflow.com/questions/14742194/declaring-an-htmlelement-typescript
+- Type 'string' is not assignable to type : https://stackoverflow.com/questions/37978528/typescript-type-string-is-not-assignable-to-type
+- catch clause variable type annotation must be 'any' or 'unknown' if specified. : https://stackoverflow.com/questions/42618089/how-do-you-use-typed-errors-in-async-catch
+
+
+- Element : https://developer.mozilla.org/ko/docs/Web/API/Element
+- querySelector return > Element, HTMLElement
+- children : https://developer.mozilla.org/en-US/docs/Web/API/Element/children
+  - childNodes
+  - ELement[]
+  - NodeList
+  - HTMLCollection
+- Node.cloneNode() > Node
+- attributes : https://developer.mozilla.org/ko/docs/Web/API/Element/attributes
+- https://developer.mozilla.org/ko/docs/Web/API/Element/getAttribute > string
+- typescript namednodemap : https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.namednodemap.html
