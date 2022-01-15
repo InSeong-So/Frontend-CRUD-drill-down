@@ -65,7 +65,7 @@
 <details><summary>📹자바스크립트 문 벅스 요구사항, <strong>자세히보기!!</strong>👈</summary>
 <br>
 <p align="middle">
-  <img width="200px;" src="./src/images/moonbucks.png"/>
+  <img width="200px;" src="./assets/images/moonbucks.png"/>
 </p>
 <h2 align="middle">JS 문벅스 카페메뉴 앱</h2>
 <p align="middle">Vanilla JS로 구현 하는 상태관리가 가능한 카페메뉴 앱</p>
@@ -97,7 +97,7 @@
 ## 🔥 Projects!
 
 <p align="middle">
-  <img width="400" src="./src/images/moonbucks-main.png">
+  <img width="400" src="./assets/images/moonbucks-main.png">
 </p>
 
 <p align="middle">

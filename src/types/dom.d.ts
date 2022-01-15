@@ -1,42 +1,38 @@
-declare module 'component' {
-  export interface RootComponent {
-    initialize?(): void;
-
-    template?(): string;
-
-    render?(): void;
-
-    mount?(): void;
-
-    eventGroup?(): ComponentEvent[];
-
-    bindEventGroup?(): void;
-  }
-
-  export type ComponentEvent = {
-    type: string;
-    callback: (...params: any[]) => void;
-  };
-
-  export interface ComponentProp {
-    title?: string;
-    currentTab?: CategoryProps;
-  }
-  export type ComponentProps = ComponentProp | void;
-
-  export interface CategoryProps {
-    id?: string;
-    text?: string;
-    menus?: MenuItemProps[];
-  }
-
-  export interface MenuItemProps {
-    menuId: string;
-    name: string;
-    isSoldOut: boolean;
-  }
+declare module 'DiffRender' {
+  export type TDiffRender = (
+    $element: HTMLElement,
+    realNode: HTMLElement,
+    virtualNode: HTMLElement,
+  ) => void | undefined;
+  export type TNodeCompare = ($oldNode: HTMLElement, $newNode: HTMLElement) => boolean;
+  export type TAttributeCompare = (
+    node1: HTMLElement,
+    node2: HTMLElement,
+    name1: string,
+    name2: string,
+  ) => boolean;
 }
 
-declare module 'dom' {
-  export type TDomGetter = (selector: string) => HTMLElement;
+declare module 'DomConverter' {
+  export type TAttributes = TStringObject;
+  export type TVNodeEvent = { type: string; cb: (...args: any[]) => any };
+  export type TVNode = {
+    type: 'Root' | 'Element' | 'Text';
+    tagName: string;
+    attributes: TAttributes;
+    content: string;
+    children: Partial<TVNode>[];
+    events: TVNodeEvent[];
+  };
+  export type TTagRoot = { tag: 'Root'; children: object[] };
+  export type TTagText = { type: 'Text'; content: string };
+  export type TTokens = TagStart | EmptyTag | TagEnd | TextNode | TTagToken | TTagText;
+  export type TTagToken = { name: string; attributes: TAttributes };
+  export type TTextToken = { text: string };
+  export type TStringObject = { [key: string]: string };
+  export type TValidObject = { [key: string]: boolean };
+}
+
+declare module 'DOMEvent' {
+  export type TMouseEvent = MouseEvent & { target: HTMLButtonElement };
 }

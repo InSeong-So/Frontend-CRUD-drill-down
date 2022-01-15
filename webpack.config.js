@@ -29,7 +29,7 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, './index.html'),
-      favicon: './favicon.ico',
+      favicon: './assets/icon/favicon.ico',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({ filename: 'app.css' }),
@@ -37,15 +37,26 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+        exclude: /node_modules/,
       },
       {
         test: /\.(ts|tsx)$/,
         use: {
           loader: 'ts-loader',
           options: {
-            configFile: path.resolve(__dirname, 'tsconfig.json'),
+            configFile: path.resolve(__dirname, './tsconfig.json'),
           },
         },
         exclude: /node_modules/,
