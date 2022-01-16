@@ -21,7 +21,10 @@
     ],
     "noImplicitAny": true,
     "baseUrl": ".",
-    "types": ["node", "cypress"],
+    "types": [
+      "node",
+      "cypress"
+    ],
     "paths": {
       "~/*": [
         "*"
@@ -34,9 +37,10 @@
       "src/types"
     ]
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+  ],
   "exclude": [
-    "node_modules",
     "dist"
   ]
 }
