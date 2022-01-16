@@ -5,7 +5,7 @@ export const REGEXP = {
   ATTRIBUTE:
     /([a-zA-Z_:][-a-zA-Z0-9_:.]*)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:'((?:\\.|[^'])*)')|([^>\s]+)))?/g,
   ATTRIBUTE_VALID: /(^|[^\\])"/g,
-  EMPTY_SPACE: /[\\n]|[?=\s]*/gi,
+  EMPTY_SPACE: /[\n]*/gi,
 };
 
 export const EMPTY = '';

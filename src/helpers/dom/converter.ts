@@ -19,10 +19,6 @@ import {
   EMPTY,
 } from './constants';
 
-interface TAttributeMap {
-  [key: string]: string | boolean;
-}
-
 class TagStart {
   name: string;
   attributes: TStringObject;
@@ -144,7 +140,7 @@ const createElement = (token: TTagToken) => {
 
 const createTextNode = (token: TTextToken) => {
   const type = TEXT_TYPE;
-  const content = token.text.replace(REGEXP.EMPTY_SPACE, EMPTY);
+  const content = token.text.replace(REGEXP.EMPTY_SPACE, EMPTY).trim();
   return { type, content };
 };
 
