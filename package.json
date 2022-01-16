@@ -4,11 +4,11 @@
   "description": "문벅스 메뉴 TS로 만들기!",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc",
+    "watch:tsc": "tsc -w",
+    "watch:webpack": "webpack -w",
+    "build": "tsc && webpack",
     "start": "webpack-dev-server",
-    "build": "webpack",
-    "watch": "webpack -w",
-    "test": "webpack && cypress run --browser chrome"
+    "test": "tsc && webpack && cypress run --browser chrome"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,6 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-prettier": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.4.5",
     "prettier": "^2.4.1",
     "prettier-eslint": "^13.0.0",
     "resolve-url-loader": "^4.0.0",
