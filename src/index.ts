@@ -1,9 +1,9 @@
-import './assets/css/index.scss';
+import '../assets/css/index.scss';
 
-import App from './src/App';
-import render from './src/helpers/dom/render';
-import store from './src/store';
-import { CATEGORIES } from './src/constants';
+import App from './App';
+import render from './helpers/dom/render';
+import store from './store';
+import { CATEGORIES } from './constants';
 
 const diffRenderer = () => {
   const $root = document.getElementById('app') as HTMLElement;
