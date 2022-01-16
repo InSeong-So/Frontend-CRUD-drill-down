@@ -2,11 +2,11 @@ import { TPresentation, TProps } from 'Component';
 
 const Header: TPresentation = ({ categories }) => {
   return `
-  <header class="my-4">
+  <header id="header-area" class="my-4">
     <a href="/" class="text-black">
       <h1 class="text-center font-bold">🌝 문벅스 메뉴 관리</h1>
     </a>
-    <nav class="d-flex justify-center flex-wrap">
+    <nav id="nav-area" class="d-flex justify-center flex-wrap">
       ${categories
         .map((category: TProps) => {
           return `
