@@ -6,7 +6,7 @@ import MenuPage from './MenuPage';
 const MenuPageContainer = (store: IStore) => {
   const { id, text } = store.read('current');
   const menuListId = `${id}-menuList`;
-  const buttonClick = ({ target }: TMouseEvent) => {
+  const handleClick = ({ target }: TMouseEvent) => {
     if (!target.matches('.input-submit')) return;
 
     const $input = document.querySelector('.input-field') as HTMLInputElement;
@@ -21,7 +21,7 @@ const MenuPageContainer = (store: IStore) => {
 
   return {
     component: MenuPage({ menuList: store.read(menuListId), id, text }),
-    events: [{ type: 'click', cb: buttonClick }],
+    events: [{ type: 'click', cb: handleClick }],
   };
 };
 

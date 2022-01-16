@@ -3,7 +3,7 @@ import { IStore } from 'Store';
 import Header from './Header';
 
 const HeaderContainer = (store: IStore) => {
-  const changeCategory = ({ target }: TMouseEvent) => {
+  const handleClick = ({ target }: TMouseEvent) => {
     if (!target.matches('button')) return;
     store.create('current', {
       id: target.getAttribute('data-category-name'),
@@ -13,7 +13,7 @@ const HeaderContainer = (store: IStore) => {
 
   return {
     component: Header({ categories: store.read('categories') }),
-    events: [{ type: 'click', cb: changeCategory }],
+    events: [{ type: 'click', cb: handleClick }],
   };
 };
 
