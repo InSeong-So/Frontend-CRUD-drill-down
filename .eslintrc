@@ -12,13 +12,17 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended"
   ],
-  "plugins": ["prettier", "@typescript-eslint"],
+  "plugins": [
+    "prettier",
+    "@typescript-eslint"
+  ],
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
     "ecmaVersion": 12,
     "sourceType": "module"
   },
   "rules": {
+    "@typescript-eslint/no-var-requires": false,
     "prettier/prettier": [
       "error",
       {
