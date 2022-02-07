@@ -1,8 +1,0 @@
-{
-  "integrationFolder": "cypress",
-  "testFiles": "./**/*.test.js",
-  "screenshotOnRunFailure": false,
-  "video": false,
-  "viewportWidth": 500,
-  "viewportHeight": 900
-}
