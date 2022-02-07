@@ -12,10 +12,10 @@ git clone https://github.com/InSeong-So/Frontend-drill-down.git
 cd Frontend-drill-down
 
 # installation
-npm install # OR yarn install
+yarn install
 
 # start
-npm run start # OR yarn start
+yarn start
 ```
 <br>
 <hr>
@@ -47,6 +47,10 @@ npm run start # OR yarn start
 - [**🔍 두 번째 구현**](https://github.com/InSeong-So/TS-menu-manage-app/tree/main/history/version-02) : 사용한 코드, 모듈을 템플릿화 시도한 프로젝트입니다. 컴포넌트를 컨테이너(서비스 로직)와 프레젠테이션(뷰)으로 분리해 보았습니다.
 
 <br>
+
+- **🔍 세 번째 구현**(*현재 레포*) : 저만의 UI 라이브러리를 만들었고, 이를 템플릿으로 작성하기 위해 작업하고 있습니다.
+
+<br>
 <hr>
 
 ## ✔ 진행하는 스터디
@@ -54,7 +58,7 @@ npm run start # OR yarn start
 
 <br>
 
-### [ **🙋‍♂️ 여기**](https://github.com/InSeong-So/TS-moonbucks-menu)를 확인해주세요!
+### [ **🙋‍♂️ 이곳**](https://github.com/InSeong-So/TS-moonbucks-menu)과 [ **🙋🏻 저곳**](https://github.com/FECrash/Menu-Management-App)를 확인해주세요!
 
 <br>
 <hr>
